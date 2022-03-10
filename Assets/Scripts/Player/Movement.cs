@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour {
 	private Vector2 movementIntent;
 	private bool canJump = false;
 
+	private InputActionAsset actions;
+
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		lastTimeGrounded = Time.captureDeltaTime;
@@ -32,6 +34,7 @@ public class Movement : MonoBehaviour {
 		//	Now that we have all movement states assigned for this frame, let's handle the user input
 		HandleHorizontalMovement();
 		HandleVerticalMovement();
+
 	}
 
 	//	The Unity input system automatically calls this method and updates our movementIntent vector2
@@ -39,13 +42,26 @@ public class Movement : MonoBehaviour {
 		movementIntent = value.Get<Vector2>();
 	}
 
+	//	Unity input system already knows to call this because the name matches the action
+	void OnJump() {
+		bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
+		bool shouldJump = isGrounded || wasGroundedRecently;
+
+		if (canJump && shouldJump) {
+			canJump = false;
+			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);
+		}
+		Debug.Log("Jumped!");
+    }
+
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
-		Collider2D collider = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
-		if (collider != null) {
+		RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1.0f);
+		if (hit.collider != null) {
 			isGrounded = true;
 		} else {
 			if (isGrounded) {
+				Debug.Log("Updating last grounded time");
 				lastTimeGrounded = Time.time;
 			}
 			isGrounded = false;
@@ -55,18 +71,8 @@ public class Movement : MonoBehaviour {
 	//	Handles actions like jumping or crouching
 	void HandleVerticalMovement() {
 
-		if (canJump && movementIntent.y == 1) {
-			bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
-			bool shouldJump = isGrounded || wasGroundedRecently;
-
-			if (canJump && shouldJump) {
-				canJump = false;
-				rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);
-			}
-		}
-
-
-		if (movementIntent.y < 1 && !canJump) {
+		if (rb.velocity.y < -1 && !canJump) {
+			Debug.Log("Player may jump again");
 			canJump = true;
 		}
 	}
