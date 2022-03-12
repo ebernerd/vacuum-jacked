@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour {
 	private float lastTimeGrounded;
 
 	private Vector2 movementIntent;
-	private bool canJump = false;
+	private bool canJump = true;
 
 	private Animator animator;
 
@@ -106,9 +106,10 @@ public class Movement : MonoBehaviour {
 	//	Unity input system already knows to call this because the name matches the action
 	void OnJump()
 	{
+		Debug.Log("Jump attempt");
 		bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
 		bool shouldJump = isGrounded || wasGroundedRecently;
-
+		Debug.Log("Should jump? " + shouldJump.ToString());
 		if (canJump && shouldJump)
 		{
 			canJump = false;
