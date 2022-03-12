@@ -12,6 +12,8 @@ public class FlagScript : MonoBehaviour
     public Movement playerMovement; //  Reference to this player's movement script
     public bool isHoldingFlag = false;
 	public LayerMask flagLayerMask;
+       
+    public bool canFlagBePlanted = false;
 
     public GameObject throwableFlagPrefab;
 

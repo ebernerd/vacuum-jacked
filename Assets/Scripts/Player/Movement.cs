@@ -53,12 +53,11 @@ public class Movement : MonoBehaviour {
 
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
-		Collider2D hit = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius);
+		Collider2D hit = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
 		if (hit != null) {
 			isGrounded = true;
-		} else {
+		} else { 
 			if (isGrounded) {
-				Debug.Log("Updating last grounded time");
 				lastTimeGrounded = Time.time;
 			}
 			isGrounded = false;
@@ -115,12 +114,9 @@ public class Movement : MonoBehaviour {
 			canJump = false;
 			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);
 		}
-		Debug.Log("Jumped!");
 	}
 
 	void OnPunch() {
-		Debug.Log("Woo!");
-
 		//	Trigger the punch animation
 		animator.SetTrigger("Punch01");
 	}
