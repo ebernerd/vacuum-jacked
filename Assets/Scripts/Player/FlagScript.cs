@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlagCapture : MonoBehaviour
+
+/**
+ * This class handles player-to-flag interactions
+ */
+public class FlagScript : MonoBehaviour
 {
 	public GameObject playerFlagGO; //	Reference to the flag held by this player
+    public Movement playerMovement; //  Reference to this player's movement script
     public bool isHoldingFlag = false;
 	public LayerMask flagLayerMask;
+
+    public GameObject throwableFlagPrefab;
 
     public void OnCollisionEnter2D(Collision2D collision) {
         //  This script needn't do any processing if the user is already holding the flag

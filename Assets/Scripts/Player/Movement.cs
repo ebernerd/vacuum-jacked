@@ -5,12 +5,17 @@ public class Movement : MonoBehaviour {
 
 	Rigidbody2D rb;
 	public float speed;
+		
+	//	Update to the default scale X of the prefab
+	public float parentXScale = 0.44315f;
 
 	//  Ground check / jumping variables
 	public Transform groundCheckTransform;
 	public float groundCheckRadius;
 	public LayerMask groundLayerMask;
 	public float jumpForce;
+
+	public int directionFacing = 1; //	Set to 1 for facing right, -1 for facing left
 
 	private bool isGrounded = false;
 
@@ -20,11 +25,14 @@ public class Movement : MonoBehaviour {
 	private Vector2 movementIntent;
 	private bool canJump = false;
 
-	private InputActionAsset actions;
+	private Animator animator;
+
 
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		lastTimeGrounded = Time.captureDeltaTime;
+
+		animator = GetComponent<Animator>();
 	}
 
 	void Update() {
@@ -37,27 +45,16 @@ public class Movement : MonoBehaviour {
 
 	}
 
-	//	The Unity input system automatically calls this method and updates our movementIntent vector2
-	void OnMove(InputValue value) {
-		movementIntent = value.Get<Vector2>();
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
 	}
-
-	//	Unity input system already knows to call this because the name matches the action
-	void OnJump() {
-		bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
-		bool shouldJump = isGrounded || wasGroundedRecently;
-
-		if (canJump && shouldJump) {
-			canJump = false;
-			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);
-		}
-		Debug.Log("Jumped!");
-    }
 
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
-		RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1.0f);
-		if (hit.collider != null) {
+		Collider2D hit = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius);
+		if (hit != null) {
 			isGrounded = true;
 		} else {
 			if (isGrounded) {
@@ -81,5 +78,50 @@ public class Movement : MonoBehaviour {
 	void HandleHorizontalMovement() {
 		float moveBy = movementIntent.x * speed;
 		rb.velocity = new Vector2(moveBy, rb.velocity.y);
+		if (transform.localScale.x != directionFacing) {
+			transform.localScale = new Vector3(directionFacing * parentXScale, transform.localScale.y, 0);
+		}
+	}
+
+
+	/**
+	 *	The functions below are automatically called by the input system. It knows to look for the right methods.
+	 *	We have actions like "Move", "Punch", etc, and the input system will automatically look for "OnMove", "OnPunch"
+	 */
+	
+	void OnMove(InputValue value)
+	{
+		movementIntent = value.Get<Vector2>();
+
+		//	Handle detecting which direction the player is facing
+		if (movementIntent.x > 0)
+		{
+			directionFacing = 1;
+		}
+		else if (movementIntent.x < 0)
+		{
+			directionFacing = -1;
+		}
+	}
+
+	//	Unity input system already knows to call this because the name matches the action
+	void OnJump()
+	{
+		bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
+		bool shouldJump = isGrounded || wasGroundedRecently;
+
+		if (canJump && shouldJump)
+		{
+			canJump = false;
+			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);
+		}
+		Debug.Log("Jumped!");
+	}
+
+	void OnPunch() {
+		Debug.Log("Woo!");
+
+		//	Trigger the punch animation
+		animator.SetTrigger("Punch01");
 	}
 }
