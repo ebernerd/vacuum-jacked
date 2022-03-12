@@ -1,10 +1,11 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
 
-public class Movement : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
 	Rigidbody2D rb;
 	public float speed;
+
 		
 	//	Update to the default scale X of the prefab
 	public float parentXScale = 0.44315f;
@@ -25,7 +26,9 @@ public class Movement : MonoBehaviour {
 	private Vector2 movementIntent;
 	private bool canJump = true;
 
+	//	Resources to be fetched on Start()
 	private Animator animator;
+	private FlagHandler flagHandler;
 
 
 	void Start() {
@@ -33,6 +36,7 @@ public class Movement : MonoBehaviour {
 		lastTimeGrounded = Time.captureDeltaTime;
 
 		animator = GetComponent<Animator>();
+		flagHandler = GetComponent<FlagHandler>();
 	}
 
 	void Update() {
@@ -42,7 +46,6 @@ public class Movement : MonoBehaviour {
 		//	Now that we have all movement states assigned for this frame, let's handle the user input
 		HandleHorizontalMovement();
 		HandleVerticalMovement();
-
 	}
 
 	private void OnDrawGizmos()
@@ -82,6 +85,14 @@ public class Movement : MonoBehaviour {
 		}
 	}
 
+	//	To be called by subcomponents (e.g., player 1 damage script uses GetHealth() on the enemy's controller
+	public Health GetHealth() {
+		return GetComponent<Health>();
+	}
+
+	public FlagHandler GetFlagHandler() {
+		return GetComponent<FlagHandler>();
+	}
 
 	/**
 	 *	The functions below are automatically called by the input system. It knows to look for the right methods.
@@ -93,11 +104,11 @@ public class Movement : MonoBehaviour {
 		movementIntent = value.Get<Vector2>();
 
 		//	Handle detecting which direction the player is facing
-		if (movementIntent.x > 0)
-		{
+		float movementThreshold = 0.5f;
+		if (movementIntent.x > movementThreshold) {
 			directionFacing = 1;
 		}
-		else if (movementIntent.x < 0)
+		else if (movementIntent.x < -movementThreshold)
 		{
 			directionFacing = -1;
 		}
@@ -120,5 +131,9 @@ public class Movement : MonoBehaviour {
 	void OnPunch() {
 		//	Trigger the punch animation
 		animator.SetTrigger("Punch01");
+	}
+
+	void OnThrowFlag() {
+		flagHandler.ThrowFlag();
 	}
 }

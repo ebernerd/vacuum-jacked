@@ -32,9 +32,9 @@ TagManager:
   - 
   - 
   - 
-  - Player
-  - Player Combat
-  - 
+  - Player Collision
+  - Player Attack
+  - Player Hitbox
   - 
   - 
   - 

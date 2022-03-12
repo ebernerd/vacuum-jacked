@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 841641324090705035}
   - component: {fileID: 1707446672230202331}
   - component: {fileID: 26682983140204831}
-  m_Layer: 0
+  - component: {fileID: 4592589219969691882}
+  m_Layer: 26
   m_Name: L_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +102,20 @@ CircleCollider2D:
   m_Offset: {x: 0.0000009536743, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
+--- !u!114 &4592589219969691882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26682983140204830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267ec9e8799d91140a340b819e730f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  cooldown: 1
 --- !u!1 &368574700192257466
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8256370070144199722}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,14 +261,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627469733499819693}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.24, y: 6.82, z: 0}
-  m_LocalScale: {x: 1.332957, y: 2.256572, z: 2.256572}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0, z: 0.27001238, w: 0.9628569}
+  m_LocalPosition: {x: -2.54, y: 7.27, z: 0}
+  m_LocalScale: {x: 1.93, y: 1.93, z: 1.93}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 702867761642253396}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 31.33}
 --- !u!212 &627469733499819691
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -295,9 +310,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0940bc184dbe9d489528f9979f5dac4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -317,7 +332,7 @@ GameObject:
   - component: {fileID: 627469733817316822}
   - component: {fileID: 627469733817316821}
   - component: {fileID: 627469733817316820}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Ground Check Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,13 +413,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627469733817316823}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.69}
+  m_Offset: {x: 0.01, y: 0.86}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -415,7 +430,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88, y: 1}
+  m_Size: {x: 0.88, y: 4.1}
   m_EdgeRadius: 0
 --- !u!1 &632061950104319030
 GameObject:
@@ -684,7 +699,8 @@ GameObject:
   - component: {fileID: 1803989985838887990}
   - component: {fileID: 1803989985838887987}
   - component: {fileID: 1803989985838887986}
-  m_Layer: 0
+  - component: {fileID: 3532855612216524552}
+  m_Layer: 27
   m_Name: Jackie_01 (Movement)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803989985838887991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3768542, y: 0.16, z: 0}
+  m_LocalPosition: {x: -1.4934645, y: -0.76, z: 0}
   m_LocalScale: {x: 0.44315, y: 0.44315, z: 0.44315}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -771,14 +787,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dc57cc049884020bb220bbba28a8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 7
   parentXScale: 0.44315
   groundCheckTransform: {fileID: 627469733817316822}
   groundCheckRadius: 1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 4096
-  jumpForce: 5
+  jumpForce: 8
   directionFacing: 1
   rememberGroundFor: 0.1
 --- !u!114 &1803989985838887990
@@ -794,13 +810,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFlagGO: {fileID: 627469733499819693}
-  playerMovement: {fileID: 1803989985838887988}
   isHoldingFlag: 0
   flagLayerMask:
     serializedVersion: 2
     m_Bits: 1048576
   canFlagBePlanted: 0
-  throwableFlagPrefab: {fileID: 0}
+  throwableFlagPrefab: {fileID: 1619272586757637405, guid: ebc93a233413f834fb478f80de734b86, type: 3}
 --- !u!50 &1803989985838887987
 Rigidbody2D:
   serializedVersion: 4
@@ -816,7 +831,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -832,7 +847,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.4, y: 4.38}
@@ -848,6 +863,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 7.5}
   m_EdgeRadius: 0
+--- !u!114 &3532855612216524552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803989985838887991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b7c83e478e6674e83ba393d59176c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoints: 3
+  maxHealth: 100
+  health: 0
+  playerLifeText: {fileID: 0}
+  playerHealthText: {fileID: 0}
 --- !u!1 &1940106534155093857
 GameObject:
   m_ObjectHideFlags: 0

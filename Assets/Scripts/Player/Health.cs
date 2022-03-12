@@ -38,11 +38,12 @@ public class Health : MonoBehaviour
 
 	public void DealDamage(int damage)
 	{
+		Debug.Log(gameObject.name + " taking damage: " + damage);
 		health -= damage;
 		if (health < 0) {
 			OnDeath();
 		}
-		UpdateText();
+		//UpdateText();
 	}
 
 	public void Heal(int hp) {

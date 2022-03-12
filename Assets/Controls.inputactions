@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ThrowFlag",
+                    "type": "Button",
+                    "id": "7382dc2c-34c8-49d5-bf5c-441d14fb69ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -80,41 +89,19 @@
                 },
                 {
                     "name": "",
-                    "id": "8ece5d77-b09e-4027-8a08-04180cb77643",
-                    "path": "<XInputController>/buttonSouth",
+                    "id": "58304081-4737-42b1-9f4b-ceed6f991e98",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Jump",
+                    "action": "Punch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "647301d1-1915-477f-a12d-940e8fe047d4",
-                    "path": "<SwitchProControllerHID>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "75f8e6fd-450f-44ef-8aff-b7f8c1277634",
-                    "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "65465eb7-6b97-4ad9-9131-641576f3ab7c",
-                    "path": "<Keyboard>/space",
+                    "id": "dcfbdad9-f7dd-4a62-aa50-c3563e1960e5",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -124,30 +111,41 @@
                 },
                 {
                     "name": "",
-                    "id": "458e748c-7ca7-4154-aea1-63aca51101bc",
-                    "path": "<XInputController>/buttonWest",
+                    "id": "2fb95965-f1ad-4ac9-ab98-962933eea010",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Punch",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "bd6eec0e-5762-4d8a-aada-9b3375c9ef92",
-                    "path": "<DualShockGamepad>/buttonWest",
+                    "id": "337129d9-7399-4d0f-9803-6d8a37d48215",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Controller",
-                    "action": "Punch",
+                    "groups": "Keyboard",
+                    "action": "ThrowFlag",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "4dbff764-f8eb-4a2e-9327-7e280801dcd4",
-                    "path": "<Keyboard>/w",
+                    "id": "bdf31c34-e743-458f-b556-f0f5c7aa05be",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "ThrowFlag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65465eb7-6b97-4ad9-9131-641576f3ab7c",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -165,6 +163,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }
