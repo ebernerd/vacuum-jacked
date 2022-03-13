@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour {
 	//	Update to the default scale X of the prefab
 	public float parentXScale = 0.44315f;
 
+	//	Determines how far the player must fall before they're dead by "out of world"
+	public float outOfWorldY = -50f;
+
 	//  Ground check / jumping variables
 	public Transform groundCheckTransform;
-	public float groundCheckRadius;
+	public Transform respawnPoint;
 	public LayerMask groundLayerMask;
+	public float groundCheckRadius;
 	public float jumpForce;
 
 	public int directionFacing = 1; //	Set to 1 for facing right, -1 for facing left
@@ -39,20 +43,22 @@ public class PlayerController : MonoBehaviour {
 		flagHandler = GetComponent<FlagHandler>();
 	}
 
-	void Update() {
+	void FixedUpdate() {
 		//	Handle updating movement-related states first
 		CheckIfGrounded();
 
 		//	Now that we have all movement states assigned for this frame, let's handle the user input
 		HandleHorizontalMovement();
 		HandleVerticalMovement();
+
+		CheckForFallOutOfWorld();
 	}
 
-	private void OnDrawGizmos()
+	/*private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
-	}
+	}*/
 
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
@@ -83,6 +89,16 @@ public class PlayerController : MonoBehaviour {
 		if (transform.localScale.x != directionFacing) {
 			transform.localScale = new Vector3(directionFacing * parentXScale, transform.localScale.y, 0);
 		}
+	}
+
+	void CheckForFallOutOfWorld() {
+		if (transform.position.y < outOfWorldY) {
+			GetHealth().DealDamage(9999);
+		}
+	}
+
+	public void Respawn() {
+		transform.position = respawnPoint.position;
 	}
 
 	//	To be called by subcomponents (e.g., player 1 damage script uses GetHealth() on the enemy's controller

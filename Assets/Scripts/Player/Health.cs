@@ -14,10 +14,13 @@ public class Health : MonoBehaviour
 	public TextMeshProUGUI playerLifeText;
 	public TextMeshProUGUI playerHealthText;
 
+	private PlayerController playerController;
+
 	void Start()
 	{
 		//	Set the health to maxHp on start
 		health = maxHealth;
+		playerController = GetComponent<PlayerController>();
 		//UpdateText();
 	}
 
@@ -34,6 +37,7 @@ public class Health : MonoBehaviour
 			//	Trigger game end
 		}
 		health = maxHealth;
+		playerController.Respawn();
 	}
 
 	public void DealDamage(int damage)
