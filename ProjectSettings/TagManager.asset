@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player01Hand
   - Player02Body
+  - Player01Body
   layers:
   - Default
   - TransparentFX
