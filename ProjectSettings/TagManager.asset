@@ -29,7 +29,7 @@ TagManager:
   - 
   - 
   - Flag
-  - 
+  - Capture Point
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: CharacterForward
     uniqueID: 689320015
+    locked: 0
+  - name: Foreground
+    uniqueID: 2887126057
     locked: 0

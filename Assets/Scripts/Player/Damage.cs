@@ -40,11 +40,11 @@ public class Damage : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D col)
 	{
 		float currentTime = Time.time;
-		bool hasSurpassedCooldown = currentTime > lastAttackTime + cooldown;
-		if (hasSurpassedCooldown)
-		{
+		//bool hasSurpassedCooldown = currentTime > lastAttackTime + cooldown;
+		//if (hasSurpassedCooldown)
+		//{
 			lastAttackTime = currentTime;
 			OnDealDamage(col);
-		}
+		//}
 	}
 }

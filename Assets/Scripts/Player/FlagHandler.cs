@@ -20,8 +20,6 @@ public class FlagHandler : MonoBehaviour
 
     public GameObject throwableFlagPrefab;
 
-    
-
     //  To be set in Start()
     private PlayerController playerController;
     private Rigidbody2D rb;
@@ -58,16 +56,16 @@ public class FlagHandler : MonoBehaviour
         isHoldingFlag = false;
         playerFlagGO.SetActive(false);
 
+        int facing = (int)playerController.directionFacing;
         Vector3 throwSpawnPoint = new Vector3(
-            transform.position.x + (flagThrowOffset.x * playerController.directionFacing),
+            transform.position.x + (flagThrowOffset.x * facing),
             transform.position.y + flagThrowOffset.y, 
             0
         );
+
         GameObject newFlagGO = Instantiate(throwableFlagPrefab, throwSpawnPoint, Quaternion.identity);
-
-        Vector2 newVelocity = new Vector2((throwForce + Mathf.Abs(rb.velocity.x)) * playerController.directionFacing, rb.velocity.y);
-
-
+        throwableFlagPrefab.GetComponent<OutOfWorldRespawn>().respawnPoint = GameObject.Find("Flag Respawn").transform;
+        Vector2 newVelocity = new Vector2((throwForce + Mathf.Abs(rb.velocity.x)) * facing, rb.velocity.y);
         newFlagGO.GetComponent<Rigidbody2D>().velocity = newVelocity;
     }
 }

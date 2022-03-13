@@ -99,7 +99,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000009536743, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
 --- !u!114 &4592589219969691882
@@ -419,7 +419,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01, y: 0.86}
+  m_Offset: {x: 0, y: 0.86}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -697,9 +697,10 @@ GameObject:
   - component: {fileID: 1803989985838887989}
   - component: {fileID: 1803989985838887988}
   - component: {fileID: 1803989985838887990}
+  - component: {fileID: 3532855612216524552}
+  - component: {fileID: 1943071530085246649}
   - component: {fileID: 1803989985838887987}
   - component: {fileID: 1803989985838887986}
-  - component: {fileID: 3532855612216524552}
   m_Layer: 27
   m_Name: Jackie_01 (Movement)
   m_TagString: Untagged
@@ -790,11 +791,15 @@ MonoBehaviour:
   speed: 7
   parentXScale: 0.44315
   groundCheckTransform: {fileID: 627469733817316822}
+  respawnPoint: {fileID: 0}
   groundCheckRadius: 1
+  jumpForce: 15
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 4096
-  jumpForce: 8
+  flagPlantLayerMask:
+    serializedVersion: 2
+    m_Bits: 2097152
   directionFacing: 1
   rememberGroundFor: 0.1
 --- !u!114 &1803989985838887990
@@ -816,6 +821,38 @@ MonoBehaviour:
     m_Bits: 1048576
   canFlagBePlanted: 0
   throwableFlagPrefab: {fileID: 1619272586757637405, guid: ebc93a233413f834fb478f80de734b86, type: 3}
+--- !u!114 &3532855612216524552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803989985838887991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b7c83e478e6674e83ba393d59176c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLifePoints: 3
+  maxHealthPoints: 10
+  lifePoints: 3
+  maxHealth: 100
+  health: 0
+  playerLifeText: {fileID: 0}
+  playerHealthText: {fileID: 0}
+--- !u!114 &1943071530085246649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803989985838887991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206e0ecdeec5c11438a62819c77f7008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
 --- !u!50 &1803989985838887987
 Rigidbody2D:
   serializedVersion: 4
@@ -863,23 +900,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 7.5}
   m_EdgeRadius: 0
---- !u!114 &3532855612216524552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803989985838887991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b7c83e478e6674e83ba393d59176c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifePoints: 3
-  maxHealth: 100
-  health: 0
-  playerLifeText: {fileID: 0}
-  playerHealthText: {fileID: 0}
 --- !u!1 &1940106534155093857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,7 +1847,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4386496135295950661}
   - component: {fileID: 1145441000234727966}
-  m_Layer: 0
+  - component: {fileID: 5826845273942158953}
+  m_Layer: 26
   m_Name: R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1901,6 +1922,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &5826845273942158953
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5800658247111069229}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!1 &6273121622957317349
 GameObject:
   m_ObjectHideFlags: 0

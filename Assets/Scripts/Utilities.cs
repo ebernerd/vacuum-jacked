@@ -8,4 +8,6 @@ public class Utilities {
         int maskValue = mask.value;
         return maskValue == (maskValue | (1 << gameObject.layer));
     }
+
+    public static float outOfWorldY = -50f;
 }

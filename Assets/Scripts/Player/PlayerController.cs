@@ -1,26 +1,30 @@
-using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
 
+	public enum PlayerDirection {
+		Left = -1,
+		Right = 1
+	}
+	
 	Rigidbody2D rb;
 	public float speed;
 
-		
 	//	Update to the default scale X of the prefab
 	public float parentXScale = 0.44315f;
-
-	//	Determines how far the player must fall before they're dead by "out of world"
-	public float outOfWorldY = -50f;
 
 	//  Ground check / jumping variables
 	public Transform groundCheckTransform;
 	public Transform respawnPoint;
-	public LayerMask groundLayerMask;
 	public float groundCheckRadius;
 	public float jumpForce;
 
-	public int directionFacing = 1; //	Set to 1 for facing right, -1 for facing left
+	public LayerMask groundLayerMask;
+	public LayerMask flagPlantLayerMask;
+
+
+	public PlayerDirection directionFacing = PlayerDirection.Left;
 
 	private bool isGrounded = false;
 
@@ -28,7 +32,10 @@ public class PlayerController : MonoBehaviour {
 	private float lastTimeGrounded;
 
 	private Vector2 movementIntent;
+
+
 	private bool canJump = true;
+	private bool isInFlagZone = false;
 
 	//	Resources to be fetched on Start()
 	private Animator animator;
@@ -51,14 +58,7 @@ public class PlayerController : MonoBehaviour {
 		HandleHorizontalMovement();
 		HandleVerticalMovement();
 
-		CheckForFallOutOfWorld();
 	}
-
-	/*private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
-	}*/
 
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
@@ -86,13 +86,15 @@ public class PlayerController : MonoBehaviour {
 	void HandleHorizontalMovement() {
 		float moveBy = movementIntent.x * speed;
 		rb.velocity = new Vector2(moveBy, rb.velocity.y);
-		if (transform.localScale.x != directionFacing) {
-			transform.localScale = new Vector3(directionFacing * parentXScale, transform.localScale.y, 0);
+
+		int facing = (int)directionFacing;
+		if (transform.localScale.x != facing) {
+			transform.localScale = new Vector3(facing * parentXScale, transform.localScale.y, 0);
 		}
 	}
 
 	void CheckForFallOutOfWorld() {
-		if (transform.position.y < outOfWorldY) {
+		if (transform.position.y < Utilities.outOfWorldY) {
 			GetHealth().DealDamage(9999);
 		}
 	}
@@ -114,29 +116,24 @@ public class PlayerController : MonoBehaviour {
 	 *	The functions below are automatically called by the input system. It knows to look for the right methods.
 	 *	We have actions like "Move", "Punch", etc, and the input system will automatically look for "OnMove", "OnPunch"
 	 */
-	
-	void OnMove(InputValue value)
-	{
+	void OnMove(InputValue value) {
 		movementIntent = value.Get<Vector2>();
 
 		//	Handle detecting which direction the player is facing
 		float movementThreshold = 0.5f;
 		if (movementIntent.x > movementThreshold) {
-			directionFacing = 1;
-		}
-		else if (movementIntent.x < -movementThreshold)
-		{
-			directionFacing = -1;
+			directionFacing = PlayerDirection.Right;
+		} else if (movementIntent.x < -movementThreshold) {
+			directionFacing = PlayerDirection.Left;
 		}
 	}
 
 	//	Unity input system already knows to call this because the name matches the action
 	void OnJump()
 	{
-		Debug.Log("Jump attempt");
 		bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
 		bool shouldJump = isGrounded || wasGroundedRecently;
-		Debug.Log("Should jump? " + shouldJump.ToString());
+
 		if (canJump && shouldJump)
 		{
 			canJump = false;
@@ -144,12 +141,43 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void OnPunch() {
-		//	Trigger the punch animation
+	void OnPrimaryPunch() {
 		animator.SetTrigger("Punch01");
+	}
+
+	void OnSecondaryPunch() {
+		animator.SetTrigger("Punch02");
 	}
 
 	void OnThrowFlag() {
 		flagHandler.ThrowFlag();
+	}
+
+	void OnPlantFlag(InputAction.CallbackContext ctx) {
+		if (isInFlagZone) {
+			Debug.Log("In");
+		} else {
+			Debug.Log("Out");
+		}
+	}
+
+	//	This method is called via OutOfWorldRespawn
+	void OnFallOutOfWorld() {
+		//	Deal enough damage to mark a death
+		GetHealth().DealDamage(9999);
+	}
+
+
+
+	private void OnTriggerEnter2D(Collider2D collision) {
+		if (Utilities.IsObjectInLayer(collision.gameObject, flagPlantLayerMask)) {
+			isInFlagZone = true;
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision) {
+		if (Utilities.IsObjectInLayer(collision.gameObject, flagPlantLayerMask)) {
+			isInFlagZone = false;
+		}
 	}
 }

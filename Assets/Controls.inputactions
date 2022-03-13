@@ -24,9 +24,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Punch",
+                    "name": "PrimaryPunch",
                     "type": "Button",
                     "id": "5925d45e-2dde-4ef0-b9d4-3b42ae15f621",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryPunch",
+                    "type": "Button",
+                    "id": "1360473e-6179-4ec4-a595-f77fece5269d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -40,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PlantFlag",
+                    "type": "Value",
+                    "id": "00a62a93-a09d-4d62-b451-0c8d43e0ae4a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -90,11 +108,11 @@
                 {
                     "name": "",
                     "id": "58304081-4737-42b1-9f4b-ceed6f991e98",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Punch",
+                    "action": "PrimaryPunch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -105,7 +123,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Punch",
+                    "action": "PrimaryPunch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -150,6 +168,50 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aca44221-e7dc-4d82-8adc-05e853c2c251",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "SecondaryPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af0a00f0-8a0d-44d2-a33e-e0cb197141d6",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "SecondaryPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13355241-565a-45bf-bb0d-e653eb3678ef",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "PlantFlag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c32fa86-5c13-425b-ada2-f1c7ffb9cbb4",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "PlantFlag",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
