@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 1803989985838887987}
   - component: {fileID: 1803989985838887986}
   m_Layer: 27
-  m_Name: Jackie_01 (Movement)
+  m_Name: Jackie 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
