@@ -165,6 +165,13 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+
+	void OnPause() {
+		Debug.Log("Pausing");
+		PauseMenu pauseMenu = GameObject.Find("Game UI").GetComponent<PauseMenu>();
+		pauseMenu.Pause();
+	}
+
 	//	This method is called via OutOfWorldRespawn
 	void OnFallOutOfWorld() {
 		//	Deal enough damage to mark a death

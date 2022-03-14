@@ -47,7 +47,6 @@ public class Health : MonoBehaviour
 
 	public void UpdateUI() {
 		float newVal = ((float)health / (float)maxHealth) * 100f;
-		Debug.Log(newVal);
 		healthSlider.value = newVal;
 	}
 
