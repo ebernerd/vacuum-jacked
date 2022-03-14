@@ -71,6 +71,7 @@ public class FlagHandler : MonoBehaviour
         Physics2D.IgnoreCollision(playerController.GetPlayerCollider(), plantedFlagGO.GetComponent<Collider2D>());
 
         FlagInstance flag = plantedFlagGO.GetComponent<FlagInstance>();
+        flag.StartUI();
         flag.planter = gameObject;
 
         isHoldingFlag = false;

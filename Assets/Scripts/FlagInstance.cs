@@ -12,17 +12,12 @@ public class FlagInstance : MonoBehaviour
 
 	private float spawnedAt;
 	private float plantTimer;
-	private FlagCountdownUI ui;
 
 	private void Start() {
 		//	Mark this flag as planted if the planter GO is not null
 		//	Said GO will be set by FlagHandler.PlantFlag()
 		isPlanted = planter != null;
-		Debug.Log("New flag! Is planted? " + isPlanted);
 		plantTimer = countdownLength;
-
-		ui = GameObject.Find("Flag UI").GetComponent<FlagCountdownUI>();
-		ui.SetVisibility(isPlanted);
 	}
 
 	private void Update() {
@@ -31,11 +26,19 @@ public class FlagInstance : MonoBehaviour
 		}
 		plantTimer -= Time.deltaTime;
 
+		FlagCountdownUI ui = GameObject.Find("Flag UI").GetComponent<FlagCountdownUI>();
 		string uiTextVal = Mathf.CeilToInt(plantTimer).ToString();
 		ui.SetTimerText(uiTextVal);
 
 		if (plantTimer <= 0) {
 			// End game
 		}
+	}
+
+	public void StartUI() {
+		FlagCountdownUI ui = GameObject.Find("Flag UI").GetComponent<FlagCountdownUI>();
+		ui.SetVisibility(true);
+		plantTimer = countdownLength;
+		ui.SetTimerText(plantTimer.ToString());
 	}
 }
