@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6be8f57d21be8824baf4b8b657aa9ded
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - RulerGold
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1bf6b30cff78ce140993809d081a0f59, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

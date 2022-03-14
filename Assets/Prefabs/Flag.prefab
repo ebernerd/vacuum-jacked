@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1619272586757637407}
   - component: {fileID: 1619272586757637401}
   - component: {fileID: 1372608249713885430}
+  - component: {fileID: 4517421208089081274}
   - component: {fileID: 1981556517}
   m_Layer: 20
   m_Name: Flag
@@ -126,6 +127,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 0}
+--- !u!114 &4517421208089081274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619272586757637405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b580ebafde69ff247b4eccf2f83acce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planter: {fileID: 0}
 --- !u!50 &1981556517
 Rigidbody2D:
   serializedVersion: 4

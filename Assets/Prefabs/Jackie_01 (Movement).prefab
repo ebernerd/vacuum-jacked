@@ -796,10 +796,11 @@ MonoBehaviour:
   jumpForce: 15
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 33558528
   flagPlantLayerMask:
     serializedVersion: 2
     m_Bits: 2097152
+  playerCollider: {fileID: 627469733817316820}
   directionFacing: 1
   rememberGroundFor: 0.1
 --- !u!114 &1803989985838887990
@@ -833,13 +834,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b7c83e478e6674e83ba393d59176c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifePoints: 3
-  maxHealthPoints: 10
-  lifePoints: 3
-  maxHealth: 100
+  lives: 3
   health: 0
   playerLifeText: {fileID: 0}
   playerHealthText: {fileID: 0}
+  healthSlider: {fileID: 0}
 --- !u!114 &1943071530085246649
 MonoBehaviour:
   m_ObjectHideFlags: 0

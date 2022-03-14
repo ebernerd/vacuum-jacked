@@ -23,10 +23,12 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask groundLayerMask;
 	public LayerMask flagPlantLayerMask;
 
+	public Collider2D playerCollider; // the collider that actually collides with ground, players, etc
+
 
 	public PlayerDirection directionFacing = PlayerDirection.Left;
 
-	private bool isGrounded = false;
+	private bool isGrounded = true;
 
 	public float rememberGroundFor;
 	private float lastTimeGrounded;
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
 		Collider2D hit = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
-		if (hit != null) {
+		if (hit != null && hit.GetComponent<Collider2D>() != playerCollider) {
 			isGrounded = true;
 		} else { 
 			if (isGrounded) {
@@ -112,6 +114,10 @@ public class PlayerController : MonoBehaviour {
 		return GetComponent<FlagHandler>();
 	}
 
+	public Collider2D GetPlayerCollider() {
+		return playerCollider;
+	}
+
 	/**
 	 *	The functions below are automatically called by the input system. It knows to look for the right methods.
 	 *	We have actions like "Move", "Punch", etc, and the input system will automatically look for "OnMove", "OnPunch"
@@ -133,7 +139,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
 		bool shouldJump = isGrounded || wasGroundedRecently;
-
+		Debug.Log(wasGroundedRecently + " " + shouldJump + " " + canJump);
 		if (canJump && shouldJump)
 		{
 			canJump = false;
@@ -153,11 +159,9 @@ public class PlayerController : MonoBehaviour {
 		flagHandler.ThrowFlag();
 	}
 
-	void OnPlantFlag(InputAction.CallbackContext ctx) {
+	void OnPlantFlag() {
 		if (isInFlagZone) {
-			Debug.Log("In");
-		} else {
-			Debug.Log("Out");
+			flagHandler.PlantFlag();
 		}
 	}
 
