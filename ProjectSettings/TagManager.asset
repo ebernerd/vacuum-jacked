@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player01Hand
+  - Player02Body
+  - Player01Body
   layers:
   - Default
   - TransparentFX
@@ -17,6 +20,7 @@ TagManager:
   - 
   - 
   - 
+  - Ground
   - 
   - 
   - 
@@ -24,15 +28,14 @@ TagManager:
   - 
   - 
   - 
+  - Flag
+  - Capture Point
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player Collision
+  - Player Attack
+  - Player Hitbox
   - 
   - 
   - 
@@ -52,4 +55,7 @@ TagManager:
     locked: 0
   - name: CharacterForward
     uniqueID: 689320015
+    locked: 0
+  - name: Foreground
+    uniqueID: 2887126057
     locked: 0
