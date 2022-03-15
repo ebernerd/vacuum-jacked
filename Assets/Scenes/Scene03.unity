@@ -1242,11 +1242,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-<<<<<<< Updated upstream
-    m_SensorSize: {x: 1.977907, y: 1}
-=======
     m_SensorSize: {x: 1.7777778, y: 1}
->>>>>>> Stashed changes
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3275,8 +3271,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916546429}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
-=======
 --- !u!1 &1918088081
 GameObject:
   m_ObjectHideFlags: 0
@@ -3385,7 +3379,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes
 --- !u!1 &2086474803
 GameObject:
   m_ObjectHideFlags: 0
