@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
@@ -35,10 +36,6 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector2 movementIntent;
 
-
-	public AudioSource audioSource;
-
-
 	private bool canJump = true;
 	private bool isInFlagZone = false;
 
@@ -65,9 +62,25 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	private Tuple<Vector3, Vector2> GetBoxCastParams() {
+		Vector3 center = groundCheckTransform.position;
+		Bounds bounds = playerCollider.bounds;
+		Vector2 vecBounds = new Vector2(bounds.size.x, groundCheckRadius);
+		return Tuple.Create(center, vecBounds);
+	}
+
+	public void OnDrawGizmos() {
+		Gizmos.color = Color.magenta;
+		var bounds = GetBoxCastParams();
+		Gizmos.DrawWireCube(bounds.Item1, bounds.Item2);
+	}
+
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
-		Collider2D hit = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
+		//	Build the box
+		var bounds = GetBoxCastParams();
+		Collider2D hit = Physics2D.BoxCast(bounds.Item1, bounds.Item2, 0, Vector2.down).collider;
+		
 		if (hit != null && hit.GetComponent<Collider2D>() != playerCollider) {
 			isGrounded = true;
 		} else { 
@@ -127,6 +140,8 @@ public class PlayerController : MonoBehaviour {
 	 */
 	void OnMove(InputValue value) {
 		movementIntent = value.Get<Vector2>();
+
+		animator.SetFloat("Walk01", movementIntent.normalized.magnitude);
 
 		//	Handle detecting which direction the player is facing
 		float movementThreshold = 0.5f;

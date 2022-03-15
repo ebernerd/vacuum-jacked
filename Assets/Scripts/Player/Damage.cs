@@ -14,7 +14,6 @@ public class Damage : MonoBehaviour
 
 	//	To be set in Start()
 	private Health playerHealth;
-	public PlayerController controller;
 
 	public AudioClip hitSound;
 
@@ -23,7 +22,7 @@ public class Damage : MonoBehaviour
 	}
 
 	void PlayHitSound() {
-		AudioSource src = controller.GetComponent<AudioSource>();
+		AudioSource src = GetComponentInParent<AudioSource>();
 		src.clip = hitSound;
 		src.Play();
 	}

@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
 	public void OnDeath() {
 		lives -= 1;
 		if (lives <= 0) {
-			//	Trigger game end
+			GameManager.GetGameManager().EndGame();
 		}
 		health = maxHealth;
 		playerController.Respawn();
