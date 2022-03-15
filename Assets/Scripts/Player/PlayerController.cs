@@ -128,8 +128,6 @@ public class PlayerController : MonoBehaviour {
 	void OnMove(InputValue value) {
 		movementIntent = value.Get<Vector2>();
 
-		animator.SetFloat("Walk01", movementIntent.normalized.magnitude);
-
 		//	Handle detecting which direction the player is facing
 		float movementThreshold = 0.5f;
 		if (movementIntent.x > movementThreshold) {
