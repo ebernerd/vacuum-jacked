@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
 	public Slider healthSlider;
 
 	private PlayerController playerController;
+	
+
 
 
 	void Start()
@@ -31,6 +33,7 @@ public class Health : MonoBehaviour
 
 	void UpdateText()
 	{
+		
 		playerLifeText.SetText(lives.ToString());
 		playerHealthText.SetText(health.ToString());
 	}
