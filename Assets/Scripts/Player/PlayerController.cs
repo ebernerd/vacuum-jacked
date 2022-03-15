@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour {
 	private Vector2 movementIntent;
 
 
+	public AudioSource audioSource;
+
+
 	private bool canJump = true;
 	private bool isInFlagZone = false;
 

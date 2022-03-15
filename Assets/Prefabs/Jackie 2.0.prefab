@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 748102384771324902}
   - component: {fileID: 748102384771324901}
   - component: {fileID: 748102384771324900}
+  - component: {fileID: 2105957328547860025}
   m_Layer: 0
   m_Name: Jackie 2.0
   m_TagString: Untagged
@@ -302,6 +303,7 @@ MonoBehaviour:
   playerCollider: {fileID: 0}
   directionFacing: 1
   rememberGroundFor: 0.1
+  audioSource: {fileID: 0}
 --- !u!114 &748102384771324902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +357,102 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!82 &2105957328547860025
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748102384771324899}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &960326713402407648
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +713,7 @@ GameObject:
   - component: {fileID: 349826950217798671}
   - component: {fileID: 1384303257358012101}
   - component: {fileID: 1384303257358012107}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: L_Hand
   m_TagString: Player01Hand
   m_Icon: {fileID: 0}
@@ -703,6 +801,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 10
   cooldown: 0.5
+  controller: {fileID: 748102384771324903}
+  hitSound: {fileID: 8300000, guid: c357727804b72334eb53ba6a9de74293, type: 3}
 --- !u!58 &1384303257358012107
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1139,7 +1239,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.85}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1150,7 +1250,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.15, y: 3.62}
+  m_Size: {x: 2.02, y: 4.91}
   m_EdgeRadius: 0
 --- !u!1 &3032737444129700112
 GameObject:
@@ -1703,6 +1803,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 7
   cooldown: 0.5
+  controller: {fileID: 748102384771324903}
+  hitSound: {fileID: 8300000, guid: 9f361a1da2fd73a4ab57245861907108, type: 3}
 --- !u!58 &4893397952877158904
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2017,7 +2119,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.86}
+  m_Offset: {x: 0.03, y: 0.86}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2028,7 +2130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88, y: 4.1}
+  m_Size: {x: 0.72, y: 4.1}
   m_EdgeRadius: 0
 --- !u!1 &6094874446502188856
 GameObject:
