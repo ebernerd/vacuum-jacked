@@ -31,7 +31,7 @@ public class FlagInstance : MonoBehaviour
 		ui.SetTimerText(uiTextVal);
 
 		if (plantTimer <= 0) {
-			// End game
+			GameManager.GetGameManager().EndGame();
 		}
 	}
 
@@ -40,5 +40,10 @@ public class FlagInstance : MonoBehaviour
 		ui.SetVisibility(true);
 		plantTimer = countdownLength;
 		ui.SetTimerText(plantTimer.ToString());
+	}
+
+	public void EndUI() {
+		FlagCountdownUI ui = GameObject.Find("Flag UI").GetComponent<FlagCountdownUI>();
+		ui.SetVisibility(false);
 	}
 }

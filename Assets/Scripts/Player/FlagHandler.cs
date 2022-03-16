@@ -46,7 +46,9 @@ public class FlagHandler : MonoBehaviour
         bool isFlag = Utilities.IsObjectInLayer(collision.gameObject, flagLayerMask);
         if (isFlag) {
             isHoldingFlag = true;
-
+            FlagInstance flag = collision.gameObject.GetComponent<FlagInstance>();
+            flag.EndUI();
+            
             //  Destroy the flag game object, hiding it from scene
             Destroy(collision.gameObject);
 
