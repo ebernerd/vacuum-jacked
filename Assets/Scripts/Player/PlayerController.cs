@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask flagPlantLayerMask;
 
 	public Collider2D playerCollider; // the collider that actually collides with ground, players, etc
-
+	public KeyCode[] KeyCodes = (KeyCode.O, KeyCode.P);
 
 	public PlayerDirection directionFacing = PlayerDirection.Left;
 
@@ -64,12 +64,7 @@ public class PlayerController : MonoBehaviour {
 		HandleVerticalMovement();
 
 	}
-	public KeyCodes GetKeyCodes(){
 
-		KeyCodes = (KeyCode.O,KeyCode.P);
-
-		return KeyCodes;
-	}
 
 
 	public void DetectPressedKeys()
@@ -77,7 +72,7 @@ public class PlayerController : MonoBehaviour {
         //Go through all the Keys
         //To make it faster we can attach a class and put all the keys that are allowed to be pressed
         //This will make the process a bit faster rather than moving through all keys
-        KeyCodes = GetKeyCodes();
+        KeyCodes = (KeyCode.O, KeyCode.P);
 		foreach (KeyCode kcode in KeyCodes)
         {
             if (Input.GetKeyDown(kcode))
@@ -127,7 +122,7 @@ public class PlayerController : MonoBehaviour {
 	void CheckIfGrounded() {
 		//	Build the box
 		var bounds = GetBoxCastParams();
-		Collider2D hit = Physics2D.BoxCast(bounds.Item1, bounds.Item2, 0, Vector2.down).collider;
+		Collider2D hit = Physics2D.BoxCast(bounds.Item1, bounds.Item2, 0, Vector2.down, 1f).collider;
 		
 		if (hit != null && hit.GetComponent<Collider2D>() != playerCollider) {
 			isGrounded = true;
