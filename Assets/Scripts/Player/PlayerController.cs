@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour {
 
 	void CheckForFallOutOfWorld() {
 		if (transform.position.y < Utilities.outOfWorldY) {
-			GetHealth().DealDamage(9999);
+			GetHealth().TakeDamage(9999);
 		}
 	}
 
@@ -147,6 +147,22 @@ public class PlayerController : MonoBehaviour {
 	public Collider2D GetPlayerCollider() {
 		return playerCollider;
 	}
+
+	public void BeginAttack(AttackData.BasicAttackType attackType) {
+		Vector2 direction = AttackData.getAttackDirection(attackType) * new Vector2((int)directionFacing, 1f);
+		int damage = AttackData.getAttackDamage(attackType);
+		float attackDistance = 1.0f;
+
+		Transform referencePoint = transform.Find("Attack Origin Point");
+		RaycastHit2D hit = Physics2D.Raycast(referencePoint.position, direction, attackDistance);
+		if (hit.collider != null) {
+			PlayerController opponentController = hit.collider.GetComponentInParent<PlayerController>();
+			if (opponentController != null) {
+				Health opponentHealth = opponentController.GetHealth();
+				opponentHealth.TakeDamage(damage);
+            }
+        }
+    }
 
 	/**
 	 *	The functions below are automatically called by the input system. It knows to look for the right methods.
@@ -211,7 +227,7 @@ public class PlayerController : MonoBehaviour {
 	//	This method is called via OutOfWorldRespawn
 	void OnFallOutOfWorld() {
 		//	Deal enough damage to mark a death
-		GetHealth().DealDamage(9999);
+		GetHealth().TakeDamage(9999);
 	}
 
 
