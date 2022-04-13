@@ -38,7 +38,8 @@ public class PlayerController : MonoBehaviour {
 
 	private bool canJump = true;
 	private bool isInFlagZone = false;
-
+	private bool isRecordingCombo = false;
+	private List<int> ComboSequence = new List;
 	//	Resources to be fetched on Start()
 	private Animator animator;
 	private FlagHandler flagHandler;
@@ -65,8 +66,6 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-
-
 	public void DetectPressedKeys()
     {
         //Go through all the Keys
@@ -91,10 +90,6 @@ public class PlayerController : MonoBehaviour {
         KeysPressed.Clear(); //Empty the list
     }
 
-
-
-
-
 	private Tuple<Vector3, Vector2> GetBoxCastParams() {
 		Vector3 center = groundCheckTransform.position;
 		Bounds bounds = playerCollider.bounds;
@@ -110,7 +105,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	void CheckCombo() {
-		if (Input.GetKey(KeyCode.LeftShift))
+		if (Input.GetKeyDown(KeyCode.LeftShift))
 		{
 
 			combo_start_time = Time.time;
