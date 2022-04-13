@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour {
 
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask flagPlantLayerMask;
 
 	public Collider2D playerCollider; // the collider that actually collides with ground, players, etc
-	public KeyCode[] KeyCodes = (KeyCode.O, KeyCode.P);
+	
 
 	public PlayerDirection directionFacing = PlayerDirection.Left;
 
@@ -38,8 +40,9 @@ public class PlayerController : MonoBehaviour {
 
 	private bool canJump = true;
 	private bool isInFlagZone = false;
-	private bool isRecordingCombo = false;
-	private List<int> ComboSequence = new List;
+	private ComboHandler comboHandler;
+
+
 	//	Resources to be fetched on Start()
 	private Animator animator;
 	private FlagHandler flagHandler;
@@ -48,47 +51,27 @@ public class PlayerController : MonoBehaviour {
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		lastTimeGrounded = Time.captureDeltaTime;
+		comboHandler = GetComponent<ComboHandler>();
 
 		animator = GetComponent<Animator>();
 		flagHandler = GetComponent<FlagHandler>();
 	}
 
-	
-	
-	void FixedUpdate() {
+    void FixedUpdate() {
 		//	Handle updating movement-related states first
 		CheckIfGrounded();
-		//check if combo recording 
-		CheckCombo();
+		
+
+
 		//	Now that we have all movement states assigned for this frame, let's handle the user input
 		HandleHorizontalMovement();
 		HandleVerticalMovement();
 
 	}
 
-	public void DetectPressedKeys()
-    {
-        //Go through all the Keys
-        //To make it faster we can attach a class and put all the keys that are allowed to be pressed
-        //This will make the process a bit faster rather than moving through all keys
-        KeyCodes = (KeyCode.O, KeyCode.P);
-		foreach (KeyCode kcode in KeyCodes)
-        {
-            if (Input.GetKeyDown(kcode))
-            {
-                KeysPressed.Add(kcode); //Add the Key to the List
-
-               // StartCoroutine(ResetComboTimer()); //Start the Reseting process
-            }
-        }
-    }
-
    
 	//reset players combo and stun them.
-	public void ResetCombo()
-    {
-        KeysPressed.Clear(); //Empty the list
-    }
+	
 
 	private Tuple<Vector3, Vector2> GetBoxCastParams() {
 		Vector3 center = groundCheckTransform.position;
@@ -104,14 +87,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-	void CheckCombo() {
-		if (Input.GetKeyDown(KeyCode.LeftShift))
-		{
 
-			combo_start_time = Time.time;
-			DetectPressedKeys();
-		}
-	}
 
 	//	Checks if the character's ground check object is colliding with an object on the ground layer mask
 	void CheckIfGrounded() {
@@ -204,11 +180,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnPrimaryPunch() {
-		animator.SetTrigger("Punch01");
+		if (!comboHandler.IsRecording()) {
+			animator.SetTrigger("Punch01");
+        }
 	}
 
 	void OnSecondaryPunch() {
-		animator.SetTrigger("Punch02");
+		if (!comboHandler.IsRecording()) {
+			animator.SetTrigger("Punch02");
+		}
 	}
 
 	void OnThrowFlag() {

@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ComboToggle",
+                    "type": "Value",
+                    "id": "63e50801-32c1-4b8b-9883-b648e89ee1cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -117,7 +126,7 @@
                 {
                     "name": "",
                     "id": "58304081-4737-42b1-9f4b-ceed6f991e98",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -127,8 +136,8 @@
                 },
                 {
                     "name": "",
-                    "id": "dcfbdad9-f7dd-4a62-aa50-c3563e1960e5",
-                    "path": "<Mouse>/leftButton",
+                    "id": "076c65c3-cf39-4d3e-87a4-65b50697cd7b",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -182,22 +191,22 @@
                 },
                 {
                     "name": "",
-                    "id": "aca44221-e7dc-4d82-8adc-05e853c2c251",
-                    "path": "<Mouse>/rightButton",
+                    "id": "af0a00f0-8a0d-44d2-a33e-e0cb197141d6",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Controller",
                     "action": "SecondaryPunch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "af0a00f0-8a0d-44d2-a33e-e0cb197141d6",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "edbcfe66-e65b-4eb5-bb30-5e574d1a573f",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Controller",
+                    "groups": "Keyboard",
                     "action": "SecondaryPunch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -243,6 +252,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb1777fd-2143-4b9c-ae19-1a9821a05744",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "ComboToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a32a2035-8981-4840-a9b7-062861a02547",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "ComboToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
