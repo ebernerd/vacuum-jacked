@@ -15,7 +15,7 @@ public class AttackData {
     public static int getAttackDamage(BasicAttackType attackType) {
         switch (attackType) {
             default: {
-                return 10;
+                return 7;
             }
             case BasicAttackType.LeftPunch: {
                 return 20;

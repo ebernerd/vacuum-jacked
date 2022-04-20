@@ -11,8 +11,8 @@ public class ComboHandler : MonoBehaviour {
 	}
 	private bool isRecordingCombo = false;
 	private List<ComboSequenceItem> comboSequence = new List<ComboSequenceItem>();
-	private float comboStartTime = 0;
 	private List<List<ComboSequenceItem>> comboSequenceLookup = new List<List<ComboSequenceItem>>();
+	private Dictionary<List<ComboSequenceItem>, string> comboAttackTypeMap = new Dictionary<List<ComboSequenceItem>, string>();
 
 	public bool IsRecording() {
 		return isRecordingCombo;
@@ -41,11 +41,13 @@ public class ComboHandler : MonoBehaviour {
 		super.Add(ComboSequenceItem.SecondaryPunch);
 		comboSequenceLookup.Add(super);
 
+		comboAttackTypeMap.Add(doublePunch, "Trigger Double Punch");
+		comboAttackTypeMap.Add(kick, "Trigger Kick");
+		comboAttackTypeMap.Add(super, "Trigger Super");
 
 	}
 
 	public void ResetCombo() {
-		comboStartTime = Time.time;
 		comboSequence = new List<ComboSequenceItem>();
 	}
 
@@ -72,7 +74,11 @@ public class ComboHandler : MonoBehaviour {
 			foreach (List<ComboSequenceItem> cs in comboSequenceLookup) {
 				if (comboSequence.SequenceEqual(cs)) {
 					//	Initiate this combo!
-					Debug.Log("Combo was entered");
+					string attackAnimationName;
+					bool found = comboAttackTypeMap.TryGetValue(cs, out attackAnimationName);
+					if (found) {
+						GetComponent<Animator>().SetTrigger(attackAnimationName);
+                    }
 				}
 			}
 			isRecordingCombo = false;
