@@ -7,7 +7,9 @@ public class AttackData {
     public enum BasicAttackType {
         LeftPunch,
         RightPunch,
-        Kick
+        Kick,
+        DoublePunch,
+        Super
     };
 
     public static int getAttackDamage(BasicAttackType attackType) {
@@ -16,8 +18,17 @@ public class AttackData {
                 return 10;
             }
             case BasicAttackType.LeftPunch: {
-                    return 5;
-                }
+                return 20;
+            }
+            case BasicAttackType.DoublePunch:
+            {
+                return 14;
+            }
+            case BasicAttackType.Super:
+            {
+                return 35;
+            }
+            
         }
     }
 

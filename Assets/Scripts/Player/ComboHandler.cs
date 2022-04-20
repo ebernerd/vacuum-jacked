@@ -20,10 +20,26 @@ public class ComboHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		List<ComboSequenceItem> dummyCombo = new List<ComboSequenceItem>();
-		dummyCombo.Add(ComboSequenceItem.PrimaryPunch);
-		dummyCombo.Add(ComboSequenceItem.SecondaryPunch);
-		comboSequenceLookup.Add(dummyCombo);
+
+		List<ComboSequenceItem> doublePunch = new List<ComboSequenceItem>();
+		doublePunch.Add(ComboSequenceItem.PrimaryPunch);
+		doublePunch.Add(ComboSequenceItem.SecondaryPunch);
+		comboSequenceLookup.Add(doublePunch);
+		
+		List<ComboSequenceItem> kick = new List<ComboSequenceItem>();
+		kick.Add(ComboSequenceItem.SecondaryPunch);
+		kick.Add(ComboSequenceItem.SecondaryPunch);
+		kick.Add(ComboSequenceItem.PrimaryPunch);
+		comboSequenceLookup.Add(kick);
+
+		List<ComboSequenceItem> super = new List<ComboSequenceItem>();
+		super.Add(ComboSequenceItem.PrimaryPunch);
+		super.Add(ComboSequenceItem.PrimaryPunch);
+		super.Add(ComboSequenceItem.SecondaryPunch);
+		super.Add(ComboSequenceItem.SecondaryPunch);
+		super.Add(ComboSequenceItem.PrimaryPunch);
+		super.Add(ComboSequenceItem.SecondaryPunch);
+		comboSequenceLookup.Add(super);
 
 
 	}
@@ -51,6 +67,7 @@ public class ComboHandler : MonoBehaviour {
 
 	void OnComboToggle() {
 		if (isRecordingCombo) {
+			//Debug.Log("Combo being recorded.");
 			//	Stop recording
 			foreach (List<ComboSequenceItem> cs in comboSequenceLookup) {
 				if (comboSequence.SequenceEqual(cs)) {
