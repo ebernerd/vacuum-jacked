@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour {
 	void OnMove(InputValue value) {
 		movementIntent = value.Get<Vector2>();
 
-		animator.SetFloat("Walk01", movementIntent.normalized.magnitude);
+		animator.SetFloat("Walk", movementIntent.normalized.magnitude);
 
 		//	Handle detecting which direction the player is facing
 		float movementThreshold = 0.5f;
@@ -197,13 +197,13 @@ public class PlayerController : MonoBehaviour {
 
 	void OnPrimaryPunch() {
 		if (!comboHandler.IsRecording()) {
-			animator.SetTrigger("Punch01");
+			animator.SetTrigger("Punch Right");
         }
 	}
 
 	void OnSecondaryPunch() {
 		if (!comboHandler.IsRecording()) {
-			animator.SetTrigger("Punch02");
+			animator.SetTrigger("Punch Left");
 		}
 	}
 

@@ -15,6 +15,9 @@ public class AttackData {
             default: {
                 return 10;
             }
+            case BasicAttackType.LeftPunch: {
+                    return 5;
+                }
         }
     }
 
