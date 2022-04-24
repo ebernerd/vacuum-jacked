@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour {
 		if (hit.collider != null) {
 			PlayerController opponentController = hit.collider.GetComponentInParent<PlayerController>();
 			if (opponentController != null) {
+				GetComponent<PlayerSoundManager>().PlaySound(attackType);
 				Health opponentHealth = opponentController.GetHealth();
 				opponentHealth.TakeDamage(damage);
             }
