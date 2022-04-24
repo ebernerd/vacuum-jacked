@@ -46,10 +46,22 @@ public class ComboHandler : MonoBehaviour {
 		super.Add(ComboSequenceItem.SecondaryPunch);
 		comboSequenceLookup.Add(super);
 
+		//	Last minute cheat code to add life to health
+		List<ComboSequenceItem> healthCheat = new List<ComboSequenceItem> {
+			ComboSequenceItem.PrimaryPunch,
+			ComboSequenceItem.PrimaryPunch,
+			ComboSequenceItem.SecondaryPunch,
+			ComboSequenceItem.PrimaryPunch,
+			ComboSequenceItem.PrimaryPunch,
+			ComboSequenceItem.PrimaryPunch,
+			ComboSequenceItem.SecondaryPunch,
+		};
+		comboSequenceLookup.Add(healthCheat);
+
 		comboAttackTypeMap.Add(doublePunch, "Trigger Double Punch");
 		comboAttackTypeMap.Add(kick, "Trigger Kick");
 		comboAttackTypeMap.Add(super, "Trigger Super");
-
+		comboAttackTypeMap.Add(healthCheat, "special_addhealth");
 	}
 
 	void AddToComboSequence(ComboSequenceItem item) {
@@ -96,7 +108,17 @@ public class ComboHandler : MonoBehaviour {
 					string attackAnimationName;
 					bool found = comboAttackTypeMap.TryGetValue(cs, out attackAnimationName);
 					if (found) {
-						GetComponent<Animator>().SetTrigger(attackAnimationName);
+						if (attackAnimationName.StartsWith("special_")) {
+							switch (attackAnimationName) {
+								default: case "special_addhealth": {
+									Debug.Log("Resetting health!");
+									GetComponent<Health>().ResetHealth();
+									break;
+								}
+							}
+						} else {
+							GetComponent<Animator>().SetTrigger(attackAnimationName);
+						}
 					}
 				}
 			}

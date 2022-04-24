@@ -56,7 +56,11 @@ public class Health : MonoBehaviour {
 		UpdateUI();
 	}
 
-
+	public void ResetHealth() {
+		health = maxHealth;
+		lives = maxLives;
+		UpdateUI();
+	}
 }
 
 
