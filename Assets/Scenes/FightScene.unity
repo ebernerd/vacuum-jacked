@@ -7751,7 +7751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3364327935521289104, guid: e0b3ce4ca449cd84eb7581242b1ed484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.86
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989501305313600796, guid: e0b3ce4ca449cd84eb7581242b1ed484, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.8500004
       objectReference: {fileID: 0}
     - target: {fileID: 6493014196455943938, guid: e0b3ce4ca449cd84eb7581242b1ed484, type: 3}
       propertyPath: jumpForce
@@ -10758,6 +10762,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1574511356339324140, guid: 54950510be06c1842af68fd81aa6ca37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
+      objectReference: {fileID: 0}
     - target: {fileID: 1658571889034136148, guid: 54950510be06c1842af68fd81aa6ca37, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10844,7 +10852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7894987638615237351, guid: 54950510be06c1842af68fd81aa6ca37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.44
+      value: 2.6299999
       objectReference: {fileID: 0}
     - target: {fileID: 7969234260269615415, guid: 54950510be06c1842af68fd81aa6ca37, type: 3}
       propertyPath: healthUI

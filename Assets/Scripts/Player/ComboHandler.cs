@@ -14,8 +14,13 @@ public class ComboHandler : MonoBehaviour {
 	private List<List<ComboSequenceItem>> comboSequenceLookup = new List<List<ComboSequenceItem>>();
 	private Dictionary<List<ComboSequenceItem>, string> comboAttackTypeMap = new Dictionary<List<ComboSequenceItem>, string>();
 
+	private float comboRecordStartTime = 0f;
+	public static float maxComboTime = 1.5f;
+	public Transform indicatorGraphic;
+
 	public bool IsRecording() {
-		return isRecordingCombo;
+		float comboRecordTime = Time.time - comboRecordStartTime;
+		return isRecordingCombo && comboRecordTime < maxComboTime;
     }
 
 	// Use this for initialization
@@ -47,30 +52,44 @@ public class ComboHandler : MonoBehaviour {
 
 	}
 
-	public void ResetCombo() {
-		comboSequence = new List<ComboSequenceItem>();
-	}
-
 	void AddToComboSequence(ComboSequenceItem item) {
 		comboSequence.Add(item);
 	}
 
 	void OnPrimaryPunch() {
-		if (isRecordingCombo) {
+		if (IsRecording()) {
 			AddToComboSequence(ComboSequenceItem.PrimaryPunch);
         }
     }
 
 	void OnSecondaryPunch() {
-		if (isRecordingCombo) {
+		if (IsRecording()) {
 			AddToComboSequence(ComboSequenceItem.SecondaryPunch);
         }
     }
 
-	void OnComboToggle() {
-		if (isRecordingCombo) {
-			//Debug.Log("Combo being recorded.");
-			//	Stop recording
+	void StartRecordingCombo() {
+		//	Start recording
+		isRecordingCombo = true;
+		comboSequence = new List<ComboSequenceItem>();
+		indicatorGraphic.localScale = new Vector3(1f, 1f, 1f);
+		comboRecordStartTime = Time.time;
+	}
+
+	private void Update() {
+		if (IsRecording()) {
+			float percComplete = (Time.time - comboRecordStartTime) / maxComboTime;
+			float maxIndicatorScale = 10f;
+			float indicatorScale = (maxIndicatorScale * percComplete) + (1 - percComplete);
+			indicatorGraphic.localScale = new Vector3(indicatorScale, indicatorScale, indicatorScale);
+		} else {
+			indicatorGraphic.localScale = new Vector3(0f, 0f, 0f);
+		}
+	}
+
+	void StopRecordingCombo() {
+		isRecordingCombo = false;
+		if (Time.time - comboRecordStartTime < maxComboTime) {
 			foreach (List<ComboSequenceItem> cs in comboSequenceLookup) {
 				if (comboSequence.SequenceEqual(cs)) {
 					//	Initiate this combo!
@@ -78,14 +97,18 @@ public class ComboHandler : MonoBehaviour {
 					bool found = comboAttackTypeMap.TryGetValue(cs, out attackAnimationName);
 					if (found) {
 						GetComponent<Animator>().SetTrigger(attackAnimationName);
-                    }
+					}
 				}
 			}
-			isRecordingCombo = false;
+		}
+	}
+
+	void OnComboToggle() {
+		//	DONT use the IsRecording method here
+		if (isRecordingCombo) {
+			StopRecordingCombo();
 		} else {
-			//	Start recording
-			isRecordingCombo = true;
-			ResetCombo();
+			StartRecordingCombo();
 		}
     }
 }
