@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector2 movementIntent;
 
-	private bool canJump = true;
 	private bool isInFlagZone = false;
 	private ComboHandler comboHandler;
 
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 
 		//	Now that we have all movement states assigned for this frame, let's handle the user input
 		HandleHorizontalMovement();
-		HandleVerticalMovement();
+		//HandleVerticalMovement();
 
 	}
 
@@ -102,15 +101,6 @@ public class PlayerController : MonoBehaviour {
 				lastTimeGrounded = Time.time;
 			}
 			isGrounded = false;
-		}
-	}
-
-	//	Handles actions like jumping or crouching
-	void HandleVerticalMovement() {
-
-		if (rb.velocity.y < -1 && !canJump) {
-			Debug.Log("Player may jump again");
-			canJump = true;
 		}
 	}
 
@@ -151,7 +141,7 @@ public class PlayerController : MonoBehaviour {
 	public void BeginAttack(AttackData.BasicAttackType attackType) {
 		Vector2 direction = AttackData.getAttackDirection(attackType) * new Vector2((int)directionFacing, 1f);
 		int damage = AttackData.getAttackDamage(attackType);
-		float attackDistance = 1.0f;
+		float attackDistance = 2.0f;
 
 		Transform referencePoint = transform.Find("Attack Origin Point");
 		RaycastHit2D hit = Physics2D.Raycast(referencePoint.position, direction, attackDistance);
@@ -187,10 +177,9 @@ public class PlayerController : MonoBehaviour {
 	{
 		bool wasGroundedRecently = Time.time - lastTimeGrounded <= rememberGroundFor;
 		bool shouldJump = isGrounded || wasGroundedRecently;
-		Debug.Log(wasGroundedRecently + " " + shouldJump + " " + canJump);
-		if (canJump && shouldJump)
+		Debug.Log(wasGroundedRecently + " " + shouldJump);
+		if (shouldJump)
 		{
-			canJump = false;
 			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);
 		}
 	}
