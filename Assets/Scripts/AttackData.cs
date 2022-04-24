@@ -18,11 +18,11 @@ public class AttackData {
                 return 7;
             }
             case BasicAttackType.LeftPunch: {
-                return 20;
+                return 10;
             }
             case BasicAttackType.DoublePunch:
             {
-                return 14;
+                return 25;
             }
             case BasicAttackType.Super:
             {
