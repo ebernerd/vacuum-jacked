@@ -4922,7 +4922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -39}
+  m_AnchoredPosition: {x: 0, y: -58.971}
   m_SizeDelta: {x: -585.0627, y: -276.0571}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &609909457
@@ -6066,8 +6066,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -667, y: 405}
-  m_SizeDelta: {x: 128.9045, y: 63.1685}
+  m_AnchoredPosition: {x: -665.36, y: 403}
+  m_SizeDelta: {x: 100.3219, y: 53.1646}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &719134081
 MonoBehaviour:
@@ -7773,7 +7773,7 @@ GameObject:
   - component: {fileID: 1025126785}
   - component: {fileID: 1025126784}
   m_Layer: 5
-  m_Name: Button
+  m_Name: InstructionsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7797,8 +7797,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000017405, y: 480}
-  m_SizeDelta: {x: 231.3654, y: 45.8981}
+  m_AnchoredPosition: {x: -0.000015259, y: 480}
+  m_SizeDelta: {x: 193.7162, y: 47.3462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1025126784
 MonoBehaviour:
@@ -7869,7 +7869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.37967244, g: 0.6297133, b: 0.764151, a: 1}
+  m_Color: {r: 0.3803922, g: 0.59066427, b: 0.7647059, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15848,8 +15848,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1230.3978, y: 691.0308}
+  m_AnchoredPosition: {x: 0, y: -14.0453}
+  m_SizeDelta: {x: 1230.4, y: 719.1213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1970154426
 MonoBehaviour:
@@ -15871,41 +15871,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Controls (relative to XBOX controller layout):
-
-    Move: WASD / Left
-    Joystick
-
-    Jump: Space / A
-
-    Primary punch: O / X
-
-    Secondary punch:
-    P / Y
-
-    Combo record: Left shift / Left bumper
-
-    Pause: Escape / Start
-
-
-
-    To
+  m_text: "Controls (relative to XBOX controller layout):\r\nMove: WASD / Left Joystick\r\nJump:
+    Space / A\r\nPrimary punch: O / X\r\nSecondary punch: P / Y\n\rPlant flag: E
+    / B\r\nCombo record: Left shift / Left bumper\r\nPause: Escape / Start\r\n\r\nTo
     record a combo, hold down the combo record button. You have 1.5 seconds to record
     a combo. Possible combos (with P representing the primary button, S representing
-    secondary):
-
-    PS - Double punch
-
-    SSP - Kick
-
-    PPSSPS - Super kickpunch
-
-
-
-    Plant
-    flag: E / B
-
-    PPSPPPS resets health to full'
+    secondary):\r\nPS - Double punch\r\nSSP - Kick\r\nPPSSPS - Super kickpunch\r\n\r\nEaster
+    Egg: PPSPPPS resets health to full"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
