@@ -5862,7 +5862,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.9254766, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8248,7 +8248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3364327935521289104, guid: e0b3ce4ca449cd84eb7581242b1ed484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.01
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 3989501305313600796, guid: e0b3ce4ca449cd84eb7581242b1ed484, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15887,7 +15887,7 @@ MonoBehaviour:
 
     Pause: Escape / Start
 
-    
+
 
     To
     record a combo, hold down the combo record button. You have 1.5 seconds to record
@@ -15900,7 +15900,7 @@ MonoBehaviour:
 
     PPSSPS - Super kickpunch
 
-    
+
 
     Plant
     flag: E / B
